@@ -1,19 +1,20 @@
-# Fuentes que se rastrean. Una por línea. Las líneas con # son comentarios.
+# Sources to track. One per line. Lines starting with # are comments.
 #
-# Formato:   URL   [modo]
-#   - modo "all"   -> guarda TODOS los posts nuevos de ese feed (sin filtrar).
-#   - sin modo     -> solo guarda los que mencionen las PALABRAS_CLAVE (ver rastrear.py).
+# Format:   URL   [mode]
+#   - mode "all"  -> save EVERY new post from that feed (no filtering).
+#   - no mode     -> only save posts that mention one of the KEYWORDS
+#                    (see KEYWORDS in tracker.py).
 #
-# Usa "all" para webs pequeñas y temáticas (todo lo que publican te interesa),
-# y deja el filtro para webs grandes donde solo quieres lo de Switch 2.
+# Use "all" for small, on-topic sites (everything they post is relevant),
+# and leave the filter on for big sites where you only want Switch 2 news.
 
-# --- Wayayeo: web de modding. Queremos cada post nuevo -> modo all ---
+# --- Wayayeo: modding site. We want every new post -> mode all ---
 https://wayayeo.org/feed/   all
 
-# --- Webs grandes: solo lo que hable de Switch 2 (filtradas) ---
+# --- Big sites: only Switch 2 posts (filtered) ---
 https://wololo.net/feed/
 https://www.nintendolife.com/feeds/latest
 
-# --- Reddit: búsquedas ya centradas en el tema ---
+# --- Reddit: searches already focused on the topic ---
 https://www.reddit.com/search.rss?q=switch%202%20emulator&sort=new   all
 https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new   all

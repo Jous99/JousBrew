@@ -1,0 +1,54 @@
+name: JousBrew Tracker
+
+# When this workflow runs
+on:
+  schedule:
+    # Every 6 hours, on the hour (UTC). cron format: minute hour day month weekday
+    - cron: "0 */6 * * *"
+  workflow_dispatch:      # also lets you run it by hand from the "Actions" tab
+  push:
+    branches: [ main ]    # and run once whenever you push to main
+
+# Allow the workflow to commit back to the repository
+permissions:
+  contents: write
+
+# Avoid two runs overlapping (they could both try to push)
+concurrency:
+  group: tracker
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) Check out the repository
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      # 2) Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3) Install dependencies (feedparser)
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4) Run the tracker
+      - name: Run tracker
+        run: python tracker.py
+
+      # 5) If anything changed, commit and push automatically
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add NEWS.md data/seen.json
+            git commit -m "Update Switch 2 news ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "Nothing to commit."
+          fi

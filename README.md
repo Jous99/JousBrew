@@ -1,72 +1,78 @@
-# Rastreador de noticias de Nintendo Switch 2
+# JousBrew — Switch 2 news tracker
 
-Un repositorio que **se actualiza solo**: una vez al día busca noticias sobre
-emulación y homebrew de la Switch 2 y, si encuentra algo nuevo, lo apunta en
-[`NOTICIAS.md`](NOTICIAS.md) con un commit automático. No necesitas tener nada
-encendido: todo el trabajo lo hace GitHub gratis (GitHub Actions).
+A repository that **updates itself**: several times a day it checks a few sources
+for Nintendo Switch 2 emulation & homebrew news and, whenever something new shows
+up, it records it in [`NEWS.md`](NEWS.md) with an automatic commit. You don't need
+to keep anything running — GitHub does all the work for free (GitHub Actions).
 
-## Cómo funciona (en 4 piezas)
+## How it works (4 pieces)
 
-1. **`feeds.txt`** — la lista de fuentes RSS que se vigilan (Reddit, Wololo,
-   Nintendo Life, GBAtemp...). Puedes añadir o quitar las que quieras.
-2. **`rastrear.py`** — el programa: lee los feeds, se queda con lo que menciona
-   "Switch 2", evita repetir noticias (las recuerda en `data/visto.json`) y
-   escribe las nuevas arriba del todo de `NOTICIAS.md`.
-3. **`.github/workflows/rastrear.yml`** — el "reloj": le dice a GitHub que
-   ejecute el programa cada día y haga commit de los cambios.
-4. **`NOTICIAS.md`** — el resultado, que se va llenando solo.
+1. **`feeds.txt`** — the list of RSS sources to watch (Wayayeo, Wololo, Nintendo
+   Life, Reddit searches...). Add or remove any you like.
+2. **`tracker.py`** — the program: reads the feeds, keeps what's relevant, avoids
+   duplicates (it remembers links in `data/seen.json`) and writes new items at the
+   very top of `NEWS.md`.
+3. **`.github/workflows/tracker.yml`** — the "clock": tells GitHub to run the
+   program on a schedule and commit the changes.
+4. **`NEWS.md`** — the result, which fills up on its own.
 
-## Puesta en marcha (paso a paso)
+## Automatic updates
 
-1. Crea una cuenta en [github.com](https://github.com) si no la tienes.
-2. Crea un repositorio nuevo (por ejemplo `switch2-tracker`). Puede ser público
-   o privado, da igual.
-3. Sube estos archivos al repositorio. Dos formas:
-   - **Fácil (web):** botón *Add file → Upload files*, y arrastra todo. Ojo: la
-     carpeta `.github` a veces no se sube arrastrando porque empieza por punto;
-     si te pasa, créala a mano con *Add file → Create new file* y escribe la ruta
-     `.github/workflows/rastrear.yml`.
-   - **Con git (terminal):**
+The workflow runs on its own in three ways:
+
+- **On a schedule** — every 6 hours (the `cron` line in the workflow).
+- **On push** — whenever you push to `main`.
+- **On demand** — the *Run workflow* button in the Actions tab.
+
+Each run commits any new items back to the repo automatically, so the history of
+`NEWS.md` is your feed of updates. Change how often it runs by editing the `cron`
+line (e.g. `0 */3 * * *` = every 3 hours).
+
+## Setup (step by step)
+
+1. Create a GitHub account at [github.com](https://github.com) if you don't have one.
+2. Create a new repository (e.g. `JousBrew`). Public or private, your call.
+3. Upload these files to the repository. Two ways:
+   - **Easy (web):** *Add file → Upload files* and drag everything in. Heads-up:
+     the `.github` folder sometimes won't upload by dragging because it starts with
+     a dot. If that happens, create it by hand with *Add file → Create new file*
+     and type the path `.github/workflows/tracker.yml`.
+   - **With git (terminal):**
      ```bash
      git init
      git add .
-     git commit -m "Primer commit"
+     git commit -m "Initial commit"
      git branch -M main
-     git remote add origin https://github.com/TU_USUARIO/switch2-tracker.git
+     git remote add origin https://github.com/YOUR_USERNAME/JousBrew.git
      git push -u origin main
      ```
-4. En el repositorio, ve a la pestaña **Settings → Actions → General**, baja a
-   *Workflow permissions* y marca **"Read and write permissions"**. Esto es lo
-   que permite al robot hacer commits. (Guarda con *Save*.)
-5. Ve a la pestaña **Actions**, elige *"Rastrear noticias Switch 2"* y pulsa
-   **"Run workflow"** para probarlo ahora mismo sin esperar a mañana.
+4. In the repository, go to **Settings → Actions → General**, scroll to
+   *Workflow permissions* and select **"Read and write permissions"**, then *Save*.
+   This is what lets the bot commit.
+5. Go to the **Actions** tab, pick *"JousBrew Tracker"* and press **"Run workflow"**
+   to try it right now instead of waiting.
 
-¡Listo! A partir de ahí se ejecuta solo cada día a las 08:00 UTC (10:00 en
-España en verano). Puedes cambiar esa hora editando la línea `cron` del archivo
-`.github/workflows/rastrear.yml`.
-
-## Probarlo en tu ordenador (opcional)
+## Run it locally (optional)
 
 ```bash
 pip install -r requirements.txt
-python rastrear.py
+python tracker.py
 ```
 
-## Ajustes que puedes tocar
+## Tweaks
 
-- **Fuentes:** edita `feeds.txt`. Una URL por línea. Las líneas con `#` son
-  comentarios. Puedes añadir `all` después de una URL para guardar **todos** los
-  posts de ese feed (útil en webs pequeñas y temáticas como wayayeo); sin `all`,
-  solo guarda los que mencionen las palabras clave.
-  Truco: casi cualquier web hecha con WordPress tiene su feed en `/feed/` (por
-  ejemplo `https://wayayeo.org/feed/`). Es más fiable que raspar el HTML.
-- **Qué se considera relevante:** en `rastrear.py`, la lista `PALABRAS_CLAVE`.
-  Si añades por ejemplo `"atmosphere"` o `"eden"`, también las cazará.
-- **Cada cuánto se ejecuta:** la línea `cron` del workflow. Formato:
-  `minuto hora día mes día-semana`. Por ejemplo `0 */6 * * *` = cada 6 horas.
+- **Sources:** edit `feeds.txt`. One URL per line; `#` lines are comments. Add
+  `all` after a URL to keep **every** post from that feed (good for small,
+  on-topic sites like Wayayeo); without `all`, it only keeps posts that mention
+  the keywords.
+  Tip: almost any WordPress site exposes its feed at `/feed/` (e.g.
+  `https://wayayeo.org/feed/`). That's more reliable than scraping the HTML.
+- **What counts as relevant:** the `KEYWORDS` list in `tracker.py`. Add e.g.
+  `"atmosphere"` or `"eden"` to catch those too.
+- **How often it runs:** the `cron` line in the workflow.
 
-## Notas
+## Notes
 
-- Si un feed deja de funcionar, el script simplemente lo salta; no rompe nada.
-- La primera ejecución puede recoger varias noticias de golpe (las recientes de
-  cada feed). A partir de ahí solo verás lo nuevo.
+- If a feed stops working, the script just skips it; nothing breaks.
+- The first run may pick up several items at once (the recent ones from each
+  feed). After that you'll only see what's new.
