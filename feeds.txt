@@ -1,0 +1,14 @@
+# Fuentes RSS que se rastrean. Una URL por línea.
+# Las líneas que empiezan por # son comentarios y se ignoran.
+# Puedes añadir o quitar feeds libremente.
+
+# --- Búsquedas en Reddit (ya vienen filtradas por palabra clave) ---
+https://www.reddit.com/search.rss?q=switch%202%20emulator&sort=new
+https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new
+https://www.reddit.com/r/SwitchHacks/.rss
+https://www.reddit.com/r/EmulationOnAndroid/.rss
+
+# --- Webs de la escena (se filtran por la palabra "switch 2") ---
+https://wololo.net/feed/
+https://www.nintendolife.com/feeds/latest
+https://gbatemp.net/forums/nintendo-switch-2.1074/index.rss
