@@ -3,14 +3,19 @@
 """
 tracker.py
 ----------
-Reads a list of RSS feeds (from feeds.txt), looks for Nintendo Switch 2 news,
-and writes any new items to the top of NEWS.md.
+Reads a list of RSS feeds (from feeds.txt), looks for Nintendo Switch 2
+piracy / homebrew / hacking / emulation news, and writes any new items to the
+top of NEWS.md.
+
+An item is kept only when it mentions BOTH:
+  1) the console  -> one of CONSOLE_KEYWORDS  ("switch 2")
+  2) the topic    -> one of TOPIC_KEYWORDS    (homebrew, exploit, emulator...)
 
 It stores the links it has already recorded in data/seen.json, so the same
 item is never added twice.
 
-Designed to run on its own via a scheduled GitHub Action, but you can also run
-it by hand:  python tracker.py
+Designed to run on its own via a scheduled Action, but you can also run it by
+hand:  python tracker.py
 """
 
 import json
@@ -23,11 +28,28 @@ import feedparser  # library that reads RSS/Atom feeds. Install with: pip instal
 
 # --- Configuration -----------------------------------------------------------
 
-# For feeds WITHOUT the "all" mode, an item is kept only if its title or summary
-# contains one of these keywords (case-insensitive).
-KEYWORDS = [
+# 1) The item must be about the Switch 2.
+CONSOLE_KEYWORDS = [
     "switch 2",
     "switch2",
+]
+
+# 2) AND it must be about piracy / homebrew / hacking / emulation.
+#    All lowercase. Substring match, so "hack" also catches "hacked"/"hacking".
+TOPIC_KEYWORDS = [
+    "homebrew",
+    "piracy", "pirate", "pirated", "pirateo", "pirater",   # en + es
+    "jailbreak",
+    "hack",          # hack, hacked, hacking
+    "exploit",
+    "modchip",
+    "modding",
+    "custom firmware", "cfw",
+    "emulator", "emulation", "emulate",
+    "atmosphere", "hekate",
+    "prod.keys", "bootrom", "rcm",
+    "picofly", "hwfly", "mig flash", "mig switch",
+    "warez", "undub",
 ]
 
 # Files used by the script (paths relative to this file).
@@ -40,23 +62,14 @@ NEWS_FILE = os.path.join(HERE, "NEWS.md")
 # --- Helper functions --------------------------------------------------------
 
 def read_feeds():
-    """Read feeds.txt and return a list of (url, mode) tuples.
-
-    Each useful line is:  URL   [mode]
-      - mode "all"  -> keep every post from that feed.
-      - no mode     -> filter posts by KEYWORDS.
-    """
-    feeds = []
+    """Read feeds.txt and return the list of URLs (ignoring comments/blanks)."""
+    urls = []
     with open(FEEDS_FILE, encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            parts = line.split()                 # split on spaces/tabs
-            url = parts[0]
-            mode = parts[1].lower() if len(parts) > 1 else "filter"
-            feeds.append((url, mode))
-    return feeds
+            if line and not line.startswith("#"):
+                urls.append(line.split()[0])  # take just the URL, ignore extras
+    return urls
 
 
 def load_seen():
@@ -75,11 +88,14 @@ def save_seen(seen):
 
 
 def is_relevant(entry):
-    """True if the item's title or summary mentions one of the KEYWORDS."""
+    """True only if the item mentions Switch 2 AND a piracy/homebrew topic."""
     title = entry.get("title", "")
     summary = entry.get("summary", "")
     text = (title + " " + summary).lower()
-    return any(word in text for word in KEYWORDS)
+
+    about_switch2 = any(word in text for word in CONSOLE_KEYWORDS)
+    about_topic = any(word in text for word in TOPIC_KEYWORDS)
+    return about_switch2 and about_topic
 
 
 # --- Main program ------------------------------------------------------------
@@ -88,8 +104,8 @@ def main():
     seen = load_seen()
     new_items = []  # news items found during this run
 
-    for url, mode in read_feeds():
-        print(f"Reading feed ({mode}): {url}")
+    for url in read_feeds():
+        print(f"Reading feed: {url}")
         # feedparser never raises: on failure it just returns something empty.
         feed = feedparser.parse(url)
         source = feed.feed.get("title", url)  # human-readable source name
@@ -98,9 +114,8 @@ def main():
             link = entry.get("link")
             if not link or link in seen:
                 continue  # no link, or already recorded: skip it
-            # In "all" mode we keep everything; otherwise filter by keywords.
-            if mode != "all" and not is_relevant(entry):
-                continue  # not about Switch 2
+            if not is_relevant(entry):
+                continue  # not Switch 2 piracy/homebrew: skip it
 
             title = html.unescape(entry.get("title", "(no title)")).strip()
             new_items.append({"title": title, "link": link, "source": source})

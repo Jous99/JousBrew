@@ -61,14 +61,15 @@ python tracker.py
 
 ## Tweaks
 
-- **Sources:** edit `feeds.txt`. One URL per line; `#` lines are comments. Add
-  `all` after a URL to keep **every** post from that feed (good for small,
-  on-topic sites like Wayayeo); without `all`, it only keeps posts that mention
-  the keywords.
+- **Sources:** edit `feeds.txt`. One URL per line; `#` lines are comments. You
+  can add broad sources safely — every item is filtered anyway (see below), so
+  only Switch 2 hacking/homebrew items are kept.
   Tip: almost any WordPress site exposes its feed at `/feed/` (e.g.
   `https://wayayeo.org/feed/`). That's more reliable than scraping the HTML.
-- **What counts as relevant:** the `KEYWORDS` list in `tracker.py`. Add e.g.
-  `"atmosphere"` or `"eden"` to catch those too.
+- **What counts as relevant:** an item is kept only if it mentions **Switch 2**
+  (`CONSOLE_KEYWORDS`) **and** a piracy/homebrew topic (`TOPIC_KEYWORDS`), both
+  in `tracker.py`. Add words to `TOPIC_KEYWORDS` (e.g. `"eden"`, `"deltarune"`)
+  to catch more, or edit `CONSOLE_KEYWORDS` if you also want Switch 1.
 - **How often it runs:** the `cron` line in the workflow.
 
 ## Notes

@@ -1,20 +1,19 @@
-# Sources to track. One per line. Lines starting with # are comments.
+# Sources to track. One URL per line. Lines starting with # are comments.
 #
-# Format:   URL   [mode]
-#   - mode "all"  -> save EVERY new post from that feed (no filtering).
-#   - no mode     -> only save posts that mention one of the KEYWORDS
-#                    (see KEYWORDS in tracker.py).
-#
-# Use "all" for small, on-topic sites (everything they post is relevant),
-# and leave the filter on for big sites where you only want Switch 2 news.
+# Every item is filtered: it is kept ONLY if it mentions Switch 2 AND a
+# piracy / homebrew / hacking / emulation topic (see CONSOLE_KEYWORDS and
+# TOPIC_KEYWORDS in tracker.py). So it's fine to add broad sources here — the
+# filter throws away anything that isn't Switch 2 hacking/homebrew.
 
-# --- Wayayeo: modding site. We want every new post -> mode all ---
-https://wayayeo.org/feed/   all
-
-# --- Big sites: only Switch 2 posts (filtered) ---
+# Modding / scene sites (WordPress feeds)
+https://wayayeo.org/feed/
 https://wololo.net/feed/
+
+# General Nintendo site (only its Switch 2 hacking posts will pass the filter)
 https://www.nintendolife.com/feeds/latest
 
-# --- Reddit: searches already focused on the topic ---
-https://www.reddit.com/search.rss?q=switch%202%20emulator&sort=new   all
-https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new   all
+# Reddit searches
+https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new
+https://www.reddit.com/search.rss?q=switch%202%20exploit&sort=new
+https://www.reddit.com/r/SwitchHacks/.rss
+https://www.reddit.com/r/SwitchPirates/.rss
