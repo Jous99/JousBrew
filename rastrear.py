@@ -41,14 +41,23 @@ ARCHIVO_NOTICIAS = os.path.join(AQUI, "NOTICIAS.md")
 # --- Funciones auxiliares ----------------------------------------------------
 
 def leer_feeds():
-    """Devuelve la lista de URLs de feeds.txt, ignorando comentarios y líneas vacías."""
-    urls = []
+    """Lee feeds.txt y devuelve una lista de tuplas (url, modo).
+
+    Cada línea útil es:  URL   [modo]
+      - Si el modo es "all", se guardan todos los posts de ese feed.
+      - Si no hay modo, se filtran por PALABRAS_CLAVE.
+    """
+    feeds = []
     with open(ARCHIVO_FEEDS, encoding="utf-8") as f:
         for linea in f:
             linea = linea.strip()
-            if linea and not linea.startswith("#"):
-                urls.append(linea)
-    return urls
+            if not linea or linea.startswith("#"):
+                continue
+            partes = linea.split()            # separa por espacios/tabuladores
+            url = partes[0]
+            modo = partes[1].lower() if len(partes) > 1 else "filtrar"
+            feeds.append((url, modo))
+    return feeds
 
 
 def cargar_visto():
@@ -80,8 +89,8 @@ def main():
     visto = cargar_visto()
     nuevas = []  # lista de noticias nuevas encontradas en esta ejecución
 
-    for url in leer_feeds():
-        print(f"Leyendo feed: {url}")
+    for url, modo in leer_feeds():
+        print(f"Leyendo feed ({modo}): {url}")
         # feedparser nunca lanza excepción: si el feed falla, devuelve algo vacío.
         feed = feedparser.parse(url)
         fuente = feed.feed.get("title", url)  # nombre legible de la fuente
@@ -90,7 +99,8 @@ def main():
             enlace = entrada.get("link")
             if not enlace or enlace in visto:
                 continue  # sin enlace, o ya la teníamos: la saltamos
-            if not es_relevante(entrada):
+            # En modo "all" guardamos todo; si no, filtramos por palabras clave.
+            if modo != "all" and not es_relevante(entrada):
                 continue  # no habla de la Switch 2
 
             titulo = html.unescape(entrada.get("title", "(sin título)")).strip()

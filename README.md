@@ -55,7 +55,11 @@ python rastrear.py
 ## Ajustes que puedes tocar
 
 - **Fuentes:** edita `feeds.txt`. Una URL por línea. Las líneas con `#` son
-  comentarios.
+  comentarios. Puedes añadir `all` después de una URL para guardar **todos** los
+  posts de ese feed (útil en webs pequeñas y temáticas como wayayeo); sin `all`,
+  solo guarda los que mencionen las palabras clave.
+  Truco: casi cualquier web hecha con WordPress tiene su feed en `/feed/` (por
+  ejemplo `https://wayayeo.org/feed/`). Es más fiable que raspar el HTML.
 - **Qué se considera relevante:** en `rastrear.py`, la lista `PALABRAS_CLAVE`.
   Si añades por ejemplo `"atmosphere"` o `"eden"`, también las cazará.
 - **Cada cuánto se ejecuta:** la línea `cron` del workflow. Formato:
