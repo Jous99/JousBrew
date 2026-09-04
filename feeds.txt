@@ -8,6 +8,7 @@
 # Modding / scene sites (WordPress feeds)
 https://wayayeo.org/feed/
 https://wololo.net/feed/
+https://gbatemp.net/forums/nintendo-switch-2.776/index.rss
 
 # General Nintendo site (only its Switch 2 hacking posts will pass the filter)
 https://www.nintendolife.com/feeds/latest
