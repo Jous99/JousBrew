@@ -1,4 +1,4 @@
-# Nintendo Switch 2 news (emulation & homebrew)
+# Nintendo Switch 2 news (homebrew & piracy)
 
 ## 2026-09-01
 

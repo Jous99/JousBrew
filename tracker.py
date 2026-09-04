@@ -45,7 +45,6 @@ TOPIC_KEYWORDS = [
     "modchip",
     "modding",
     "custom firmware", "cfw",
-    "emulator", "emulation", "emulate",
     "atmosphere", "hekate",
     "prod.keys", "bootrom", "rcm",
     "picofly", "hwfly", "mig flash", "mig switch",
@@ -142,7 +141,7 @@ def main():
     else:
         previous = ""
 
-    header = "# Nintendo Switch 2 news (emulation & homebrew)\n\n"
+    header = "# Nintendo Switch 2 news (homebrew & piracy)\n\n"
     body = previous
     if body.startswith(header):
         body = body[len(header):]
