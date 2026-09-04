@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-09-04
+
+- [23M hoping to make some friends](https://www.reddit.com/r/MakeNewFriendsHere/comments/1w7fkpd/23m_hoping_to_make_some_friends/) — _reddit.com: search results - switch 2 homebrew_
+
 ## 2026-09-01
 
 - [Can You Mod a Switch 2 Yet? Current Status, Homebrew & Hack News (August 2026)](https://wayayeo.org/nintendo-switch-2-modding-early-homebrew-and-hack-news/) — _Wayayeo_
