@@ -18,3 +18,5 @@ https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new
 https://www.reddit.com/search.rss?q=switch%202%20exploit&sort=new
 https://www.reddit.com/r/SwitchHacks/.rss
 https://www.reddit.com/r/SwitchPirates/.rss
+https://www.reddit.com/r/switch2hacks/.rss
+https://switchbrew.org/w/index.php?title=Special:RecentChanges&feed=atom&target=Switch_2
