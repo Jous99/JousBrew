@@ -14,8 +14,6 @@ https://gbatemp.net/forums/nintendo-switch-2.776/index.rss
 https://www.nintendolife.com/feeds/latest
 
 # Reddit searches
-https://www.reddit.com/search.rss?q=switch%202%20homebrew&sort=new
-https://www.reddit.com/search.rss?q=switch%202%20exploit&sort=new
 https://www.reddit.com/r/SwitchHacks/.rss
 https://www.reddit.com/r/SwitchPirates/.rss
 https://www.reddit.com/r/switch2hacks/.rss
