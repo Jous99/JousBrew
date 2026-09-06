@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-09-06
+
+- [Switch 2 - Received 2124-4508 ban for no reason](https://www.reddit.com/r/NintendoSwitchHelp/comments/1w8s6l9/switch_2_received_21244508_ban_for_no_reason/) — _reddit.com: search results - switch 2 homebrew_
+
 ## 2026-09-04
 
 - [23M hoping to make some friends](https://www.reddit.com/r/MakeNewFriendsHere/comments/1w7fkpd/23m_hoping_to_make_some_friends/) — _reddit.com: search results - switch 2 homebrew_
