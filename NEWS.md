@@ -2,6 +2,10 @@
 
 ## 2026-09-06
 
+- [First ever Mystery Gift at Pokemon Worlds / XP!](https://www.reddit.com/r/SwitchHacks/comments/1vz8giz/first_ever_mystery_gift_at_pokemon_worlds_xp/) — _Switch Hacks_
+
+## 2026-09-06
+
 - [Switch 2 - Received 2124-4508 ban for no reason](https://www.reddit.com/r/NintendoSwitchHelp/comments/1w8s6l9/switch_2_received_21244508_ban_for_no_reason/) — _reddit.com: search results - switch 2 homebrew_
 
 ## 2026-09-04
