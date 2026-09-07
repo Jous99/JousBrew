@@ -22,6 +22,7 @@ import json
 import os
 import datetime
 import html
+import re
 
 import feedparser  # library that reads RSS/Atom feeds. Install with: pip install feedparser
 
@@ -86,15 +87,25 @@ def save_seen(seen):
         json.dump(sorted(seen), f, ensure_ascii=False, indent=2)
 
 
-def is_relevant(entry):
-    """True only if the item mentions Switch 2 AND a piracy/homebrew topic."""
-    title = entry.get("title", "")
-    summary = entry.get("summary", "")
-    text = (title + " " + summary).lower()
+def _has_any(text, words):
+    """True if any keyword appears at a word start in `text`.
 
-    about_switch2 = any(word in text for word in CONSOLE_KEYWORDS)
-    about_topic = any(word in text for word in TOPIC_KEYWORDS)
-    return about_switch2 and about_topic
+    Word-start match: "hack" also catches "hacked"/"hacking"/"hacks",
+    but NOT "lifehack" (no word boundary right before it).
+    """
+    return any(re.search(r"\b" + re.escape(w), text) for w in words)
+
+
+def is_relevant(entry):
+    """True only if the item's TITLE mentions Switch 2 AND a piracy/homebrew topic.
+
+    We look at the TITLE ONLY, not the summary/body. Reddit stuffs the whole
+    post body into the summary, so matching there let unrelated posts through
+    just because their body happened to contain "switch 2" and a topic word
+    (gift threads, ban complaints, "make friends" posts...).
+    """
+    title = entry.get("title", "").lower()
+    return _has_any(title, CONSOLE_KEYWORDS) and _has_any(title, TOPIC_KEYWORDS)
 
 
 # --- Main program ------------------------------------------------------------
