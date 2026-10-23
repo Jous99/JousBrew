@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-10-23
+
+- [Switch 2 Supposedly Jailbroken Via Software-Only Exploit](https://www.nintendolife.com/news/2026/10/switch-2-supposedly-jailbroken-via-software-only-exploit) — _Nintendo Life | Latest Updates_
+
 ## 2026-10-22
 
 - [PLASE AI JUST MAKE IT HAPPEN ALREADY I WANNA JAILBREAK MY SWITCH 2 SO BAD](https://www.reddit.com/r/switch2hacks/comments/1x9z46d/plase_ai_just_make_it_happen_already_i_wanna/) — _switch2hacks_
