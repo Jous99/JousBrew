@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-11-10
+
+- [Switch 2 Supposedly Jailbroken Via Software-Only Exploit](https://www.nintendolife.com/news/2026/11/switch-2-supposedly-jailbroken-via-software-only-exploit) — _Nintendo Life | Latest Updates_
+
 ## 2026-10-24
 
 - [Switch 2 Jailbreak führt Vulkan Renderer und Homebrew Launcher aus](https://www.reddit.com/r/SwitchHacks/comments/1xd7d9f/switch_2_jailbreak_führt_vulkan_renderer_und/) — _Switch Hacks_
