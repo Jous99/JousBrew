@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-11-12
+
+- [Could we get a game loader on Switch 2 without a kernel exploit?](https://www.reddit.com/r/switch2hacks/comments/1xtp09j/could_we_get_a_game_loader_on_switch_2_without_a/) — _switch2hacks_
+
 ## 2026-11-10
 
 - [Switch 2 Supposedly Jailbroken Via Software-Only Exploit](https://www.nintendolife.com/news/2026/11/switch-2-supposedly-jailbroken-via-software-only-exploit) — _Nintendo Life | Latest Updates_
