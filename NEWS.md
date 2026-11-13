@@ -1,5 +1,16 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-11-13
+
+- [Switch 2 jailbreak](https://gbatemp.net/threads/switch-2-jailbreak.685692/) — _Nintendo Switch 2_
+- [Switch 2 homebrew wishlist](https://gbatemp.net/threads/switch-2-homebrew-wishlist.686485/) — _Nintendo Switch 2_
+- [What should I do today with my Switch 2(23.5.0) if i want to hack it?](https://gbatemp.net/threads/what-should-i-do-today-with-my-switch-2-23-5-0-if-i-want-to-hack-it.686493/) — _Nintendo Switch 2_
+- [Is it worth it buying a switch 2 right now for homebrew ?](https://gbatemp.net/threads/is-it-worth-it-buying-a-switch-2-right-now-for-homebrew.685799/) — _Nintendo Switch 2_
+- [Homebrew collection -and more- for Switch 2](https://gbatemp.net/threads/homebrew-collection-and-more-for-switch-2.686254/) — _Nintendo Switch 2_
+- [ezBasic - Jailbreak your switch 2 with switch 1](https://gbatemp.net/threads/ezbasic-jailbreak-your-switch-2-with-switch-1.685845/) — _Nintendo Switch 2_
+- [Mig Switch on Switch 2](https://gbatemp.net/threads/mig-switch-on-switch-2.669389/) — _Nintendo Switch 2_
+- [Speculations about Switch 2 hacking](https://gbatemp.net/threads/speculations-about-switch-2-hacking.665635/) — _Nintendo Switch 2_
+
 ## 2026-11-12
 
 - [Could we get a game loader on Switch 2 without a kernel exploit?](https://www.reddit.com/r/switch2hacks/comments/1xtp09j/could_we_get_a_game_loader_on_switch_2_without_a/) — _switch2hacks_
