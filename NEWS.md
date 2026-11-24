@@ -1,5 +1,9 @@
 # Nintendo Switch 2 news (homebrew & piracy)
 
+## 2026-11-24
+
+- [switch2.cfw.guide](https://gbatemp.net/threads/switch2-cfw-guide.686861/) — _Nintendo Switch 2_
+
 ## 2026-11-20
 
 - [New Switch 2 Userland Exploit found](https://gbatemp.net/threads/new-switch-2-userland-exploit-found.682996/) — _Nintendo Switch 2_
